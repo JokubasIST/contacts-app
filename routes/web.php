@@ -3,9 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EmailController;
-Route::get('/', function () {
+use App\Http\Controllers\StudentController;
+
+/*Route::get('/', function () {
     return view('welcome');
-});
+}):*/
+Route::resource('students', StudentController::class);
 
 Route::middleware([
     'auth:sanctum',
@@ -24,4 +27,5 @@ Route::get('/', [ContactController::class, 'index'])->name('contacts.index');
 Route::get('/contacts/create', [ContactController::class, 'create'])->middleware('auth')->name('contacts.create');
 Route::post('/contacts', [ContactController::class, 'store'])->middleware('auth')->name('contacts.store');
 });
+
 
